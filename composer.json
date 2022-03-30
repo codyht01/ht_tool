@@ -1,0 +1,19 @@
+{
+    "name": "htlove/ht_tool",
+    "description": "composer test package",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Htlove\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "codyht",
+            "email": "codyht@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

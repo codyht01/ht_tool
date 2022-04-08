@@ -19,7 +19,7 @@ class Time extends Facade
      *
      * @return array
      */
-    public static function today(): array
+    public function today(): array
     {
         list($y, $m, $d) = explode('-', date('Y-m-d'));
         return [
@@ -33,7 +33,7 @@ class Time extends Facade
      *
      * @return array
      */
-    public static function yesterday(): array
+    public function yesterday(): array
     {
         $yesterday = date('d') - 1;
         return [
@@ -47,7 +47,7 @@ class Time extends Facade
      *
      * @return array
      */
-    public static function week(): array
+    public function week(): array
     {
         list($y, $m, $d, $w) = explode('-', date('Y-m-d-w'));
         if ($w == 0) $w = 7; //修正周日的问题
@@ -61,7 +61,7 @@ class Time extends Facade
      *
      * @return array
      */
-    public static function lastWeek(): array
+    public function lastWeek(): array
     {
         $timestamp = time();
         return [
@@ -75,7 +75,7 @@ class Time extends Facade
      *
      * @return array
      */
-    public static function month(): array
+    public function month(): array
     {
         list($y, $m, $t) = explode('-', date('Y-m-t'));
         return [
@@ -89,7 +89,7 @@ class Time extends Facade
      *
      * @return array
      */
-    public static function lastMonth(): array
+    public function lastMonth(): array
     {
         $y = date('Y');
         $m = date('m');
@@ -104,7 +104,7 @@ class Time extends Facade
      *
      * @return array
      */
-    public static function year(): array
+    public function year(): array
     {
         $y = date('Y');
         return [
@@ -118,7 +118,7 @@ class Time extends Facade
      *
      * @return array
      */
-    public static function lastYear(): array
+    public function lastYear(): array
     {
         $year = date('Y') - 1;
         return [
@@ -134,7 +134,7 @@ class Time extends Facade
      * @param bool $now 返回现在或者昨天结束时间戳
      * @return array
      */
-    public static function dayToNow(int $day = 1, bool $now = true): array
+    public function dayToNow(int $day = 1, bool $now = true): array
     {
         $end = time();
         if (!$now) {
@@ -153,7 +153,7 @@ class Time extends Facade
      * @param int $day
      * @return int
      */
-    public static function daysAgo(int $day = 1)
+    public function daysAgo(int $day = 1)
     {
         $nowTime = time();
         return $nowTime - self::daysToSecond($day);
@@ -165,7 +165,7 @@ class Time extends Facade
      * @param int $day
      * @return int
      */
-    public static function daysAfter(int $day = 1)
+    public function daysAfter(int $day = 1)
     {
         $nowTime = time();
         return $nowTime + self::daysToSecond($day);
@@ -177,7 +177,7 @@ class Time extends Facade
      * @param int $day
      * @return int
      */
-    public static function daysToSecond(int $day = 1)
+    public function daysToSecond(int $day = 1)
     {
         return $day * 86400;
     }
@@ -188,7 +188,7 @@ class Time extends Facade
      * @param int $week
      * @return int
      */
-    public static function weekToSecond(int $week = 1)
+    public function weekToSecond(int $week = 1)
     {
         return self::daysToSecond() * 7 * $week;
     }
@@ -199,7 +199,7 @@ class Time extends Facade
      * @param int $m
      * @return array
      */
-    public static function startTimeToEndTime(int $y, int $m): array
+    public function startTimeToEndTime(int $y, int $m): array
     {
         if ($y == "") $y = date("Y");
         if ($m == "") $m = date("m");
@@ -221,7 +221,7 @@ class Time extends Facade
      * @param $value
      * @return string
      */
-    public static function getTodayWeek($value): string
+    public function getTodayWeek($value): string
     {
 
         $array = ["周天", "周一", "周二", "周三", "周四", "周五", "周六"];

@@ -10,10 +10,9 @@
 
 namespace Htlove;
 
-use think\Facade;
-
-class Jwt extends Facade
+class Jwt
 {
+    use Singleton;
     private array $header = [];
     private string $key = '';
     public function __construct(array $header = [],string $key = "")

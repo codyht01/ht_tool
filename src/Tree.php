@@ -12,9 +12,9 @@ namespace Htlove;
 
 use think\Facade;
 
-class Tree extends Facade
+class Tree
 {
-
+    use Singleton;
     /**
      * @param int $pid
      * @param array $list

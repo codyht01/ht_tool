@@ -10,10 +10,9 @@
 
 namespace Htlove;
 
-use think\Facade;
-
-class Map extends Facade
+class Map
 {
+    use Singleton;
     /**
      * 计算两点之间的距离
      * @param float $lng1 经度1

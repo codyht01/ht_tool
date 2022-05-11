@@ -10,10 +10,10 @@
 
 namespace Htlove;
 
-use think\Facade;
 
-class Str extends Facade
+class Str
 {
+    use Singleton;
     /**
      * 获取指定长度的验证码 默认4位
      * @param int $len

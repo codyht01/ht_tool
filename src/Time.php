@@ -10,10 +10,9 @@
 
 namespace Htlove;
 
-use think\Facade;
-
-class Time extends Facade
+class Time
 {
+    use Singleton;
     /**
      * 返回今日开始和结束的时间戳
      *

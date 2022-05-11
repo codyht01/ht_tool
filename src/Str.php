@@ -10,6 +10,7 @@
 
 namespace Htlove;
 
+use Htlove\tool\Singleton;
 
 class Str
 {
@@ -19,7 +20,7 @@ class Str
      * @param int $len
      * @return int
      */
-    public function randCode(int $len = 4): int
+    function randCode(int $len = 4): int
     {
         $rand = rand(1000, 9999);
         if ($len == 6) {
@@ -33,7 +34,7 @@ class Str
      * @param int $length
      * @return string
      */
-    public function randStr(int $length = 8): string
+    function randStr(int $length = 8): string
     {
         // 密码字符集，可任意添加你需要的字符
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_[]{}<>~`+=,.;:/?|";
@@ -52,7 +53,7 @@ class Str
      * 根据时间获取全数字长度
      * @return string
      */
-    public function RandNumberStr(): string
+    function RandNumberStr(): string
     {
         return date('YmdHis') . rand(100000, 999999);
     }
@@ -62,7 +63,7 @@ class Str
      * @param string $prefix
      * @return string
      */
-    public function create_trade_no(string $prefix = ''): string
+    function create_trade_no(string $prefix = ''): string
     {
         return $prefix . date('YmdHis', time()) . substr(microtime(), 2, 6) . sprintf('%03d', rand(0, 999));
     }

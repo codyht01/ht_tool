@@ -12,23 +12,17 @@ namespace Htlove;
 
 trait Singleton
 {
-    private static $_instance;
+    private static $instance;
 
     /**
-     *
+     * @param mixed ...$args
+     * @return static
      */
-    public function __construct()
+    static function getInstance(...$args)
     {
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function getInstance()
-    {
-        if (empty(self::$_instance)) {
-            self::$_instance = new self();
+        if(!isset(static::$instance)){
+            static::$instance = new static(...$args);
         }
-        return self::$_instance;
+        return static::$instance;
     }
 }

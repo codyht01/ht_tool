@@ -15,6 +15,7 @@ use Htlove\tool\Singleton;
 class Str
 {
     use Singleton;
+
     /**
      * 获取指定长度的验证码 默认4位
      * @param int $len
@@ -66,5 +67,26 @@ class Str
     function create_trade_no(string $prefix = ''): string
     {
         return $prefix . date('YmdHis', time()) . substr(microtime(), 2, 6) . sprintf('%03d', rand(0, 999));
+    }
+
+    /**
+     * 获取guid
+     * @return string
+     */
+    public function guid(): string
+    {
+        if (function_exists('com_create_guid')) {
+            return com_create_guid();
+        } else {
+            mt_srand((int)microtime());
+            $charid = strtoupper(md5(uniqid((string)rand(), true)));
+            $hyphen = chr(45);
+            $uuid = substr($charid, 0, 8) . $hyphen
+                . substr($charid, 8, 4) . $hyphen
+                . substr($charid, 12, 4) . $hyphen
+                . substr($charid, 16, 4) . $hyphen
+                . substr($charid, 20, 8);
+            return $uuid;
+        }
     }
 }

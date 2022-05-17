@@ -10,6 +10,8 @@
 
 namespace Htlove;
 
+use Htlove\tool\Singleton;
+
 class Time
 {
     use Singleton;

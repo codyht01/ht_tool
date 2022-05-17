@@ -10,7 +10,7 @@
 
 namespace Htlove;
 
-use think\Facade;
+use Htlove\tool\Singleton;
 
 class Tree
 {

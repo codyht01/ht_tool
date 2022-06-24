@@ -15,22 +15,35 @@ use Htlove\tool\Singleton;
 class Jwt
 {
     use Singleton;
+
     private array $header = [];
     private string $key = '';
-    public function __construct(array $header = [],string $key = "")
+
+    /**
+     * @param array $header
+     * @param string $key
+     */
+    public function __construct(array $header = [], string $key = "")
     {
-        if(empty($header)){
+        if (empty($header)) {
             $this->header = [
                 'alg' => 'HS256', //生成signature的算法
                 'typ' => 'JWT'    //类型
             ];
         }
-        if(empty($key)){
+        if (empty($key)) {
             $this->key = "5ec9603ec579b6615f8c31048c581a2e";
         }
     }
 
     /**
+     * iss：Issuer，发行者
+     * sub：Subject，主题
+     * aud：Audience，观众
+     * exp：Expiration time，过期时间
+     * nbf：Not before
+     * iat：Issued at，发行时间
+     * jti：JWT ID
      * @param array $payload
      * @return string
      */
@@ -41,6 +54,10 @@ class Jwt
         return $base64header . '.' . $base64payload . '.' . $this->signature($base64header . '.' . $base64payload, $this->key, $this->header['alg']);
     }
 
+    /**
+     * @param string $Token
+     * @return false|mixed
+     */
     public function verifyToken(string $Token = "")
     {
         $tokens = explode('.', $Token);
@@ -77,6 +94,10 @@ class Jwt
         return $payload;
     }
 
+    /**
+     * @param string $input
+     * @return array|string|string[]
+     */
     private function base64UrlEncode(string $input)
     {
         return str_replace('=', '', strtr(base64_encode($input), '+/', '-_'));

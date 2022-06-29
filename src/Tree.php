@@ -15,6 +15,7 @@ use Htlove\tool\Singleton;
 class Tree
 {
     use Singleton;
+
     /**
      * @param int $pid
      * @param array $list
@@ -56,5 +57,49 @@ class Tree
 
         }
         return $newList;
+    }
+
+    /**
+     * 对象转换
+     * @param $arr
+     * @param int $pid
+     * @return array
+     */
+    public function objToTree($arr, int $pid = 0): array
+    {
+        $list = array();
+        foreach ($arr as $key => $v) {
+            if ($v->parent_id == $pid) {
+                $tmp = $this->objToTree($arr, $v->id);
+                if ($tmp) {
+                    $v->submenu = $tmp;
+                }
+                $list[] = $v;
+            }
+        }
+        return $list;
+    }
+
+    /**
+     * 数组转换
+     * @param array $arr
+     * @param int $pid
+     * @param string $parent_key
+     * @param string $submenu
+     * @return array
+     */
+    public function arrayMenu(array $arr = [], int $pid = 0, string $parent_key = 'parent_id', string $submenu = 'submenu'): array
+    {
+        $list = array();
+        foreach ($arr as $key => $v) {
+            if ($v[$parent_key] == $pid) {
+                $tmp = $this->arrayMenu($arr, $v['id']);
+                if ($tmp) {
+                    $v[$submenu] = $tmp;
+                }
+                $list[] = $v;
+            }
+        }
+        return $list;
     }
 }

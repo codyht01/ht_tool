@@ -65,14 +65,14 @@ class Tree
      * @param int $pid
      * @return array
      */
-    public function objToTree($arr, int $pid = 0,string $parent_key = 'parent_id', string $submenu = 'submenu'): array
+    public function objToTree($arr, int $pid = 0): array
     {
         $list = array();
         foreach ($arr as $key => $v) {
-            if ($v->$parent_key == $pid) {
-                $tmp = $this->objToTree($arr, $v->id,$parent_key,$submenu);
+            if ($v->parent_id == $pid) {
+                $tmp = $this->objToTree($arr, $v->id);
                 if ($tmp) {
-                    $v->$submenu = $tmp;
+                    $v->submenu = $tmp;
                 }
                 $list[] = $v;
             }

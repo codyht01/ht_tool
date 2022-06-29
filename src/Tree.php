@@ -93,7 +93,7 @@ class Tree
         $list = array();
         foreach ($arr as $key => $v) {
             if ($v[$parent_key] == $pid) {
-                $tmp = $this->arrayMenu($arr, $v['id'],$parent_key,$submenu);
+                $tmp = $this->arrayMenu($arr, $v['id']);
                 if ($tmp) {
                     $v[$submenu] = $tmp;
                 }

@@ -63,16 +63,18 @@ class Tree
      * 对象转换
      * @param $arr
      * @param int $pid
+     * @param string $parent_key
+     * @param string $submenu
      * @return array
      */
-    public function objToTree($arr, int $pid = 0): array
+    public function objToTree($arr, int $pid = 0,string $parent_key = 'parent_id', string $submenu = 'submenu'): array
     {
         $list = array();
-        foreach ($arr as $key => $v) {
-            if ($v->parent_id == $pid) {
-                $tmp = $this->objToTree($arr, $v->id);
+        foreach ($arr as $v) {
+            if ($v->$parent_key == $pid) {
+                $tmp = $this->objToTree($arr, $v->id,$parent_key,$submenu);
                 if ($tmp) {
-                    $v->submenu = $tmp;
+                    $v->$submenu = $tmp;
                 }
                 $list[] = $v;
             }
@@ -91,9 +93,9 @@ class Tree
     public function arrayMenu(array $arr = [], int $pid = 0, string $parent_key = 'parent_id', string $submenu = 'submenu'): array
     {
         $list = array();
-        foreach ($arr as $key => $v) {
+        foreach ($arr as $v) {
             if ($v[$parent_key] == $pid) {
-                $tmp = $this->arrayMenu($arr, $v['id']);
+                $tmp = $this->arrayMenu($arr, $v['id'],$parent_key,$submenu);
                 if ($tmp) {
                     $v[$submenu] = $tmp;
                 }
